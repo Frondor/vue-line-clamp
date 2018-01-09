@@ -4,7 +4,8 @@
   "description": "A simple, fast and lightweight directive for truncating multi line texts using \"cross-browser\" CSS strategies.",
   "main": "dist/main.min.js",
   "scripts": {
-    "build": "webpack --progress --hide-modules"
+    "build": "webpack --progress --hide-modules",
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
@@ -30,5 +31,8 @@
   "bugs": {
     "url": "https://github.com/Frondor/vue-line-clamp/issues"
   },
-  "homepage": "https://github.com/Frondor/vue-line-clamp#readme"
+  "homepage": "https://github.com/Frondor/vue-line-clamp#readme",
+  "dependencies": {
+    "vue": "^2.5.13"
+  }
 }

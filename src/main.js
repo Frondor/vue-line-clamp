@@ -13,9 +13,16 @@ const truncateText = function (el, lines, needsFallback) {
 }
 
 export default {
-  install (Vue, options) {
+  install (Vue, options = {}) {
     if (options.includeCss !== false) {
-      window.document.styleSheets[0].insertRule(cssContent)
+      let stylesheets = window.document.styleSheets[0]
+      if (stylesheets) {
+        stylesheets.insertRule(cssContent)
+      } else {
+        let link = window.document.createElement('style')
+        link.appendChild(window.document.createTextNode(cssContent))
+        window.document.head.appendChild(link)
+      }
     }
 
     let needsFallback = 'webkitLineClamp' in document.body.style ? false : true
@@ -33,5 +40,3 @@ export default {
     })
   }
 }
-
-exports.default = lineClamp
