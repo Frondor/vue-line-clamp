@@ -1,3 +1,5 @@
+export const cssContent = '.vue-line-clamp {display:block;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis}'
+
 const truncateText = function (el, lines, needsFallback) {
   if (needsFallback) {
     let lineHeight = parseFloat(window.getComputedStyle(el).lineHeight),
@@ -10,7 +12,7 @@ const truncateText = function (el, lines, needsFallback) {
   }
 }
 
-export default const lineClamp = {
+export default {
   install (Vue, options) {
     if (options.includeCss !== false) {
       window.document.styleSheets[0].insertRule(cssContent)
@@ -31,3 +33,5 @@ export default const lineClamp = {
     })
   }
 }
+
+exports.default = lineClamp
