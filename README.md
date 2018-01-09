@@ -1,21 +1,28 @@
-#Vue Line Clamp
-### A simple, fast and lightweight directive for truncating multi line texts using "cross-browser" CSS strategies.
+## Vue Line Clamp
 
-## Demo:
+A simple, fast and lightweight directive for truncating multi line texts using "cross-browser" CSS strategies.
 
-## Installation
+### Demo: https://codepen.io/Frondor/pen/ypvPEQ
 
-```js
+### Install
+
+```bash
+npm install --save vue-line-clamp
+```
+
+```javascript
+import Vue       from 'vue'
 import lineClamp from 'vue-line-clamp'
 
 Vue.use(lineClamp, {
   // plugin options
 })
 ```
-
-## Usage
-
 ```
+
+### Usage
+
+```html
 <p v-line-clamp="2">Some long text with multiple lines that needs to be truncated to a fixed number, which is 2 in this case.</p>
 ```
 
@@ -35,4 +42,4 @@ If you're installing it with `includeCss: false`, you may want to `import` the c
 
 ### Caveats
 
-Probably there may be problems when using custom fonts. I've done some tests and couldn't detect any inconsistence so far, so feel free to open an issue and provide code to reproduce any bug or glitch you find.
+Probably there may be problems when loading custom fonts. I've done some tests and couldn't detect any inconsistence so far, so feel free to open an issue and provide code to reproduce any bug or glitch you find.
