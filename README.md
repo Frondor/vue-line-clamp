@@ -18,7 +18,6 @@ Vue.use(lineClamp, {
   // plugin options
 })
 ```
-```
 
 ### Usage
 
@@ -28,17 +27,11 @@ Vue.use(lineClamp, {
 
 ### Plugin options
 
-*includeCss* (`type: Boolean, default: true`)
+| property  | type  | default  | description |
+| --- | --- | --- | --- |
+| includeCss  | Boolean | true  | Set to false if you're providing your own style, or just importing it from within your style bundler or pre-processor
 
-Set to false if you're providing your own style, or just importing it from within your style bundler or pre-processor
 
-### Importing styles (optional)
-
-If you're installing it with `includeCss: false`, you may want to `import` the css file in your main entry file:
-
-```css
-@import 'vue-line-clamp/style.css'
-```
 
 ### Caveats
 
