@@ -1,0 +1,25 @@
+{
+  "name": "vue-line-clamp",
+  "version": "1.0.0",
+  "description": "A simple, fast and lightweight directive for truncating multi line texts using \"cross-browser\" CSS strategies.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Frondor/vue-line-clamp.git"
+  },
+  "keywords": [
+    "vue",
+    "ellipsis",
+    "line-clamp",
+    "text-truncate"
+  ],
+  "author": "Frondor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Frondor/vue-line-clamp/issues"
+  },
+  "homepage": "https://github.com/Frondor/vue-line-clamp#readme"
+}
