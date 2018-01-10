@@ -7,7 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, './dist'),
     publicPath: '/dist/',
     filename: 'main.min.js',
-    library:'vue-line-clamp',
+    library:'VueLineClamp',
     libraryTarget: 'umd'
   },
   module: {
