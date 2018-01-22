@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A simple, fast and lightweight directive for truncating multi line texts using \"cross-browser\" CSS strategies.",
   "main": "dist/main.min.js",
+  "module": "src/main.js",
   "scripts": {
     "build": "webpack --progress --hide-modules",
     "test": "node test.js"
