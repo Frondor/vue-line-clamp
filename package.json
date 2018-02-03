@@ -1,34 +1,44 @@
 {
   "name": "vue-line-clamp",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "A simple, fast and lightweight directive for truncating multi line texts using \"cross-browser\" CSS strategies.",
-  "main": "dist/main.min.js",
-  "module": "src/main.js",
+  "main": "dist/vue-line-clamp.cjs.js",
+  "module": "dist/vue-line-clamp.esm.js",
+  "browser": "dist/vue-line-clamp.umd.js",
   "scripts": {
-    "build": "webpack --progress --hide-modules",
-    "test": "node test.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Frondor/vue-line-clamp.git"
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "jest",
+    "pretest": "npm run build",
+    "serve": "npm run build && cp dist/. demo/dist -r && node node_modules/watch-http-server/bin/http-server ./demo -a localhost -o"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-es2015": "^6.24.1",
-    "webpack": "^2.2.0"
+    "jest": "^22.1.4",
+    "rollup": "^0.50.0",
+    "rollup-plugin-commonjs": "^8.2.6",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "watch-http-server": "^0.7.6"
   },
   "peerDependencies": {
     "vue": "^2.*"
   },
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "vue",
     "ellipsis",
     "line-clamp",
-    "text-truncate"
+    "text-truncate",
+    "truncate",
+    "multiline"
   ],
   "author": "Frondor",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Frondor/vue-line-clamp.git"
+  },
   "bugs": {
     "url": "https://github.com/Frondor/vue-line-clamp/issues"
   },
