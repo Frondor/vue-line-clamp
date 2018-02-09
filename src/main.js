@@ -1,74 +1,42 @@
-const css = 'display:block;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis'
+export const cssContent = '.vue-line-clamp {display:block;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis}'
 
-const truncateText = function (el, bindings, needsFallback) {
-  let lines = parseInt(bindings.value)
-  if (isNaN(lines)) {
-    console.error('Parameter for vue-line-clamp must be a number')
-    return
+const truncateText = function (el, lines, needsFallback) {
+  if (needsFallback) {
+    let lineHeight = parseFloat(window.getComputedStyle(el).lineHeight),
+    maxHeight = lineHeight * lines
+    el.style.maxHeight = maxHeight ? maxHeight+'px' : ''
+    el.style.overflowX = 'hidden'
   }
-  else if (lines !== bindings.def.currentValue) {
-    bindings.def.currentValue = lines
-
-    if (needsFallback) {
-      if (lines) {
-        let lineHeight = parseInt(bindings.arg)
-        if (isNaN(lineHeight)) {
-          console.warn('line-height argument for vue-line-clamp must be a number (of pixels), falling back to 16px')
-          lineHeight = 16
-        }
-
-        let maxHeight = lineHeight * lines
-
-        el.style.maxHeight = maxHeight ? maxHeight+'px' : ''
-        el.style.overflowX = 'hidden'
-        el.style.lineHeight = lineHeight+'px' // to ensure consistency
-      } else {
-        el.style.maxHeight = el.style.overflowX = ''
-      }
-    }
-    else {
-      el.style.webkitLineClamp = lines ? lines : ''
-    }
+  else {
+    el.style.webkitLineClamp = lines
   }
 }
 
-const VueLineClamp = {
-  install (Vue, options) {
-    options = Object.assign({
-      importCss: false
-    }, options)
-
-    if (options.importCss) {
-      const stylesheets = window.document.styleSheets,
-        rule = `.vue-line-clamp{${css}}`
-      if (stylesheets && stylesheets[0] && stylesheets.insertRule) {
-        stylesheets.insertRule(rule)
+export default {
+  install (Vue, options = {}) {
+    if (options.includeCss !== false) {
+      let stylesheets = window.document.styleSheets[0]
+      if (stylesheets) {
+        stylesheets.insertRule(cssContent)
       } else {
         let link = window.document.createElement('style')
-        link.id = 'vue-line-clamp'
-        link.appendChild(window.document.createTextNode(rule))
+        link.appendChild(window.document.createTextNode(cssContent))
         window.document.head.appendChild(link)
       }
     }
 
-    const needsFallback = 'webkitLineClamp' in document.body.style ? false : true
+    let needsFallback = 'webkitLineClamp' in document.body.style ? false : true
 
     Vue.directive('line-clamp', {
-      currentValue: 0,
       bind (el) {
-        if (!options.importCss) {
-          el.style.cssText += css
-        }
-        else {
-          el.classList.add('vue-line-clamp')
-        }
-
+        el.classList.add('vue-line-clamp')
       },
-      inserted: (el, bindings) => truncateText(el, bindings, needsFallback),
-      updated: (el, bindings) => truncateText(el, bindings, needsFallback),
-      componentUpdated: (el, bindings) => truncateText(el, bindings, needsFallback)
+      inserted (el, bindings) {
+        truncateText(el, bindings.value, needsFallback)
+      },
+      updated (el, bindings) {
+        truncateText(el, bindings.value, needsFallback)
+      }
     })
   }
 }
-
-export default VueLineClamp
