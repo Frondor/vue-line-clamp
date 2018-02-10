@@ -1,5 +1,5 @@
 const css = 'display:block;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis'
-const currentValueProp = "data-v-line-clamp-current-value"
+const currentValueProp = "vLineClampValue"
 
 const truncateText = function (el, bindings, needsFallback) {
   let lines = parseInt(bindings.value)
