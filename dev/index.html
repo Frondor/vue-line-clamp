@@ -3,6 +3,7 @@
 <head>
   <!-- THIS FILE IS USED FOR DEVELOPMENT -->
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
   <title>Vue Line Clamp - A multi-line ellipsis for Vue</title>
 </head>
 <body>
@@ -13,12 +14,20 @@
     <p v-line-clamp:26="lines" style="width: 200px">
       Truncate my lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore, neque minima libero voluptatibus voluptate enim earum qui tempora sed sequi fugiat aut commodi laboriosam iste cupiditate quo veritatis quam obcaecati.
     </p>
+
+    <p v-line-clamp:26="1" style="width: 200px">
+      Truncate my lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore, neque minima libero voluptatibus voluptate enim earum qui tempora sed sequi fugiat aut commodi laboriosam iste cupiditate quo veritatis quam obcaecati.
+    </p>
+
+    <p v-line-clamp:26="lines" style="width: 200px">
+      Truncate my lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore, neque minima libero voluptatibus voluptate enim earum qui tempora sed sequi fugiat aut commodi laboriosam iste cupiditate quo veritatis quam obcaecati.
+    </p>
   </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
   <script src="dist/vue-line-clamp.umd.js"></script>
   <script>
     Vue.use(VueLineClamp, {
-      importCss: false // (default) or true to inline css within element's style attr
+      importCss: false
     })
 
     new Vue({

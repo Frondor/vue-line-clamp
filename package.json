@@ -1,6 +1,6 @@
 {
   "name": "vue-line-clamp",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A simple, fast and lightweight directive for truncating multi line texts using \"cross-browser\" CSS strategies.",
   "main": "dist/vue-line-clamp.cjs.js",
   "module": "dist/vue-line-clamp.esm.js",
@@ -10,7 +10,7 @@
     "dev": "rollup -c -w",
     "test": "jest",
     "pretest": "npm run build",
-    "serve": "npm run build && cp dist/. demo/dist -r && node node_modules/watch-http-server/bin/http-server ./demo -a localhost -o"
+    "serve": "npm run build && cp dist/. dev/dist -r && node node_modules/watch-http-server/bin/http-server ./dev -a localhost -o"
   },
   "devDependencies": {
     "jest": "^22.1.4",

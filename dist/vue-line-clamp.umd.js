@@ -5,6 +5,7 @@
 }(this, (function () { 'use strict';
 
 const css = 'display:block;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis';
+const currentValueProp = "vLineClampValue";
 
 const truncateText = function (el, bindings, needsFallback) {
   let lines = parseInt(bindings.value);
@@ -12,8 +13,8 @@ const truncateText = function (el, bindings, needsFallback) {
     console.error('Parameter for vue-line-clamp must be a number');
     return
   }
-  else if (lines !== bindings.def.currentValue) {
-    bindings.def.currentValue = lines;
+  else if (lines !== el[currentValueProp]) {
+    el[currentValueProp] = lines;
 
     if (needsFallback) {
       if (lines) {
