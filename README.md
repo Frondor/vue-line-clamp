@@ -32,6 +32,7 @@ In some upcoming version it may be able to detect this value automatically.
 | property  | type  | default  | description |
 | --- | --- | --- | --- |
 | importCss  | Boolean | false  | Set to `true` in order to import styles into `<head>` automatically, element.style is used by default
+| fallbackFunc  | Function | defaultFallbackFunc  | Provide your own default method to handle the truncation strategy on unsupported browsers. Accepts all directive params: `element (Node)`, `bindings (Object)`, `lines (Number)`
 
 
 ### Caveats
@@ -40,4 +41,5 @@ Probably there may be problems when loading custom fonts. I've done some tests a
 
 ### Changelog
 
+**v1.2.1** - Implemented `fallbackFunc` options, fixed multiple elements clamping on same page.
 **v1.2** - Lines parameter passed to `v-line-clamp` is now reactive.
