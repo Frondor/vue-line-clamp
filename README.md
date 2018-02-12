@@ -42,4 +42,5 @@ Probably there may be problems when loading custom fonts. I've done some tests a
 ### Changelog
 
 **v1.2.1** - Implemented `fallbackFunc` options, fixed multiple elements clamping on same page.
+
 **v1.2** - Lines parameter passed to `v-line-clamp` is now reactive.
