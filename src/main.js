@@ -16,7 +16,8 @@ function defaultFallbackFunc (el, bindings, lines) {
     el.style.maxHeight = maxHeight ? maxHeight+'px' : ''
     el.style.overflowX = 'hidden'
     el.style.lineHeight = lineHeight+'px' // to ensure consistency
-  } else {
+  }
+  else {
     el.style.maxHeight = el.style.overflowX = ''
   }
 }
@@ -54,7 +55,7 @@ const VueLineClamp = {
     })
   },
   applyBaseStyles (el, value) {
-  	if (el[currentValueProp] !== undefined) return true
+    if (el[currentValueProp] !== undefined) return true
 
     value = parseInt(value)
 
@@ -78,11 +79,11 @@ const VueLineClamp = {
       el.style.webkitLineClamp = lines ? lines : ''
     }
 
-  	el[currentValueProp] = lines
+    el[currentValueProp] = lines
   },
   truncateText (el, bindings, useFallbackFunc) {
-    let lines = parseInt(bindings.value)
-    let elementReady = this.applyBaseStyles(el, lines)
+    let lines = parseInt(bindings.value),
+      elementReady = this.applyBaseStyles(el, lines)
 
     if (elementReady && lines !== el[currentValueProp]) {
       this.applyLineStyles(el, lines, useFallbackFunc)
