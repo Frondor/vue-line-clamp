@@ -1,4 +1,4 @@
-import { warn } from 'vue/core/util'
+const warn = window.console.error // to-do use vue warn() utility instead
 
 const css = 'display:block;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis'
 const currentValueProp = "vLineClampValue"
@@ -55,9 +55,9 @@ const VueLineClamp = {
   },
   applyBaseStyles (el, value) {
   	if (el[currentValueProp] !== undefined) return true
-    
+
     value = parseInt(value)
-    
+
     if (isNaN(value)) return false
 
     if (!this.options.importCss) {
@@ -77,14 +77,14 @@ const VueLineClamp = {
     else {
       el.style.webkitLineClamp = lines ? lines : ''
     }
-    
+
   	el[currentValueProp] = lines
   },
   truncateText (el, bindings, useFallbackFunc) {
     let lines = parseInt(bindings.value)
     let elementReady = this.applyBaseStyles(el, lines)
-    
-    if (elementReady && lines !== el[currentValueProp]) {      
+
+    if (elementReady && lines !== el[currentValueProp]) {
       this.applyLineStyles(el, lines, useFallbackFunc)
     }
   }

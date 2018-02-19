@@ -42,5 +42,8 @@
   "bugs": {
     "url": "https://github.com/Frondor/vue-line-clamp/issues"
   },
-  "homepage": "https://github.com/Frondor/vue-line-clamp#readme"
+  "homepage": "https://github.com/Frondor/vue-line-clamp#readme",
+  "dependencies": {
+    "vue": "^2.5.13"
+  }
 }

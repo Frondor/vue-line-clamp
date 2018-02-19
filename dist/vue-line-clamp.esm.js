@@ -1,45 +1,34 @@
+const warn = window.console.error; // to-do use vue warn() utility instead
+
 const css = 'display:block;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis';
 const currentValueProp = "vLineClampValue";
 
-const truncateText = function (el, bindings, needsFallback) {
-  let lines = parseInt(bindings.value);
-  if (isNaN(lines)) {
-    console.error('Parameter for vue-line-clamp must be a number');
-    return
-  }
-  else if (lines !== el[currentValueProp]) {
-    el[currentValueProp] = lines;
-
-    if (needsFallback) {
-      if (lines) {
-        let lineHeight = parseInt(bindings.arg);
-        if (isNaN(lineHeight)) {
-          console.warn('line-height argument for vue-line-clamp must be a number (of pixels), falling back to 16px');
-          lineHeight = 16;
-        }
-
-        let maxHeight = lineHeight * lines;
-
-        el.style.maxHeight = maxHeight ? maxHeight+'px' : '';
-        el.style.overflowX = 'hidden';
-        el.style.lineHeight = lineHeight+'px'; // to ensure consistency
-      } else {
-        el.style.maxHeight = el.style.overflowX = '';
-      }
+function defaultFallbackFunc (el, bindings, lines) {
+  if(lines){
+    let lineHeight = parseInt(bindings.arg);
+    if (isNaN(lineHeight)) {
+      warn('line-height argument for vue-line-clamp must be a number (of pixels), falling back to 16px');
+      lineHeight = 16;
     }
-    else {
-      el.style.webkitLineClamp = lines ? lines : '';
-    }
+
+    let maxHeight = lineHeight * lines;
+
+    el.style.maxHeight = maxHeight ? maxHeight+'px' : '';
+    el.style.overflowX = 'hidden';
+    el.style.lineHeight = lineHeight+'px'; // to ensure consistency
+  } else {
+    el.style.maxHeight = el.style.overflowX = '';
   }
-};
+}
 
 const VueLineClamp = {
+  options: {},
   install (Vue, options) {
-    options = Object.assign({
+    this.options = Object.assign({
       importCss: false
     }, options);
 
-    if (options.importCss) {
+    if (this.options.importCss) {
       const stylesheets = window.document.styleSheets,
         rule = `.vue-line-clamp{${css}}`;
       if (stylesheets && stylesheets[0] && stylesheets.insertRule) {
@@ -52,23 +41,52 @@ const VueLineClamp = {
       }
     }
 
-    const needsFallback = 'webkitLineClamp' in document.body.style ? false : true;
+    const useFallbackFunc =
+    "webkitLineClamp" in document.body.style
+        ? undefined
+        : this.options.fallbackFunc || defaultFallbackFunc;
 
     Vue.directive('line-clamp', {
-      currentValue: 0,
-      bind (el) {
-        if (!options.importCss) {
-          el.style.cssText += css;
-        }
-        else {
-          el.classList.add('vue-line-clamp');
-        }
-
-      },
-      inserted: (el, bindings) => truncateText(el, bindings, needsFallback),
-      updated: (el, bindings) => truncateText(el, bindings, needsFallback),
-      componentUpdated: (el, bindings) => truncateText(el, bindings, needsFallback)
+      bind: (el, bindings) =>  this.applyBaseStyles(el, bindings.value),
+      inserted: (el, bindings) => this.truncateText(el, bindings, useFallbackFunc),
+      updated: (el, bindings) => this.truncateText(el, bindings, useFallbackFunc),
+      componentUpdated: (el, bindings) => this.truncateText(el, bindings, useFallbackFunc)
     });
+  },
+  applyBaseStyles (el, value) {
+  	if (el[currentValueProp] !== undefined) return true
+
+    value = parseInt(value);
+
+    if (isNaN(value)) return false
+
+    if (!this.options.importCss) {
+      el.style.cssText += css;
+    }
+    else {
+      el.classList.add('vue-line-clamp');
+    }
+
+    // element is succesfully initialized
+    this.applyLineStyles(el, value);
+  },
+  applyLineStyles (el, lines, useFallbackFunc) {
+    if (useFallbackFunc) {
+      useFallbackFunc.call(this, el, bindings, lines);
+    }
+    else {
+      el.style.webkitLineClamp = lines ? lines : '';
+    }
+
+  	el[currentValueProp] = lines;
+  },
+  truncateText (el, bindings, useFallbackFunc) {
+    let lines = parseInt(bindings.value);
+    let elementReady = this.applyBaseStyles(el, lines);
+
+    if (elementReady && lines !== el[currentValueProp]) {
+      this.applyLineStyles(el, lines, useFallbackFunc);
+    }
   }
 };
 
