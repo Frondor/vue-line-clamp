@@ -1,7 +1,25 @@
 const css = 'display:block;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis';
 const currentValueProp = "vLineClampValue";
 
-const truncateText = function (el, bindings, needsFallback) {
+function defaultFallbackFunc(el, bindings, lines) {
+  if(lines){
+    let lineHeight = parseInt(bindings.arg);
+    if (isNaN(lineHeight)) {
+      console.warn('line-height argument for vue-line-clamp must be a number (of pixels), falling back to 16px');
+      lineHeight = 16;
+    }
+
+    let maxHeight = lineHeight * lines;
+
+    el.style.maxHeight = maxHeight ? maxHeight+'px' : '';
+    el.style.overflowX = 'hidden';
+    el.style.lineHeight = lineHeight+'px'; // to ensure consistency
+  } else {
+    el.style.maxHeight = el.style.overflowX = '';
+  }
+}
+
+const truncateText = function (el, bindings, useFallbackFunc) {
   let lines = parseInt(bindings.value);
   if (isNaN(lines)) {
     console.error('Parameter for vue-line-clamp must be a number');
@@ -10,22 +28,8 @@ const truncateText = function (el, bindings, needsFallback) {
   else if (lines !== el[currentValueProp]) {
     el[currentValueProp] = lines;
 
-    if (needsFallback) {
-      if (lines) {
-        let lineHeight = parseInt(bindings.arg);
-        if (isNaN(lineHeight)) {
-          console.warn('line-height argument for vue-line-clamp must be a number (of pixels), falling back to 16px');
-          lineHeight = 16;
-        }
-
-        let maxHeight = lineHeight * lines;
-
-        el.style.maxHeight = maxHeight ? maxHeight+'px' : '';
-        el.style.overflowX = 'hidden';
-        el.style.lineHeight = lineHeight+'px'; // to ensure consistency
-      } else {
-        el.style.maxHeight = el.style.overflowX = '';
-      }
+    if (useFallbackFunc) {
+      useFallbackFunc(el, bindings, lines);
     }
     else {
       el.style.webkitLineClamp = lines ? lines : '';
@@ -52,7 +56,10 @@ const VueLineClamp = {
       }
     }
 
-    const needsFallback = 'webkitLineClamp' in document.body.style ? false : true;
+    const useFallbackFunc =
+    "webkitLineClamp" in document.body.style
+        ? undefined
+        : options.fallbackFunc || defaultFallbackFunc;
 
     Vue.directive('line-clamp', {
       currentValue: 0,
@@ -65,9 +72,9 @@ const VueLineClamp = {
         }
 
       },
-      inserted: (el, bindings) => truncateText(el, bindings, needsFallback),
-      updated: (el, bindings) => truncateText(el, bindings, needsFallback),
-      componentUpdated: (el, bindings) => truncateText(el, bindings, needsFallback)
+      inserted: (el, bindings) => truncateText(el, bindings, useFallbackFunc),
+      updated: (el, bindings) => truncateText(el, bindings, useFallbackFunc),
+      componentUpdated: (el, bindings) => truncateText(el, bindings, useFallbackFunc)
     });
   }
 };
