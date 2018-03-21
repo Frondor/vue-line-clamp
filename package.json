@@ -10,11 +10,16 @@
     "dev": "rollup -c -w",
     "test": "jest",
     "pretest": "npm run build",
-    "serve": "npm run build && cp dist/. dev/dist -r && node node_modules/watch-http-server/bin/http-server ./dev -a localhost -o"
+    "serve": "npm run build && cp dist/. dev/dist -r && node node_modules/watch-http-server/bin/http-server ./dev -a localhost -o",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.6.1",
     "jest": "^22.1.4",
     "rollup": "^0.50.0",
+    "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-commonjs": "^8.2.6",
     "rollup-plugin-node-resolve": "^3.0.0",
     "watch-http-server": "^0.7.6"
