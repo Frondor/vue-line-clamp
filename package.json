@@ -42,5 +42,10 @@
   "bugs": {
     "url": "https://github.com/Frondor/vue-line-clamp/issues"
   },
-  "homepage": "https://github.com/Frondor/vue-line-clamp#readme"
+  "homepage": "https://github.com/Frondor/vue-line-clamp#readme",
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  }
 }
