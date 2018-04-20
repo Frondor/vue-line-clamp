@@ -1,7 +1,7 @@
 ## Vue Line Clamp
 
-[![npm version](https://img.shields.io/npm/v/vue-line-clamp.svg?style=flat-square)](https://www.npmjs.org/package/vue-line-clamp)
-[![npm downloads](https://img.shields.io/npm/dm/vue-line-clamp.svg?style=flat-square)](http://npm-stat.com/charts.html?package=vue-line-clamp)
+[![npm version](https://img.shields.io/npm/v/vue-line-clamp.svg)](https://www.npmjs.org/package/vue-line-clamp)
+[![npm downloads](https://img.shields.io/npm/dm/vue-line-clamp.svg)](http://npm-stat.com/charts.html?package=vue-line-clamp)
 
 A simple, fast and lightweight directive for truncating multi line texts using "cross-browser" CSS strategies.
 
