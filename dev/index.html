@@ -3,8 +3,13 @@
 <head>
   <!-- THIS FILE IS USED FOR DEVELOPMENT -->
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Vue Line Clamp - A multi-line ellipsis for Vue</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>
+    <%= htmlWebpackPlugin.options.title %>
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+  <!-- Javascript bundle gets inyected right here -->
 </head>
 <body>
   <div id="app">
@@ -27,19 +32,17 @@
       aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     </p>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
-  <script src="dist/vue-line-clamp.umd.js"></script>
   <script>
-    Vue.use(VueLineClamp, {
+    Vue.use(window["<%= webpackConfig.output.library %>"], {
       importCss: false
-    })
+    });
 
     new Vue({
       el: '#app',
       data: {
         lines: 2
       }
-    })
+    });
   </script>
 </body>
 </html>
