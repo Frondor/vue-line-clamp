@@ -80,7 +80,6 @@ const VueLineClamp = {
         }
       },
       inserted: (el, bindings) => truncateText(el, bindings, useFallbackFunc),
-      updated: (el, bindings) => truncateText(el, bindings, useFallbackFunc),
       componentUpdated: (el, bindings) =>
         truncateText(el, bindings, useFallbackFunc),
     });
