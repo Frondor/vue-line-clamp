@@ -1,6 +1,5 @@
 .DS_Store
-dev/dist/
-node_modules/
-npm-debug.log
-package-lock.json
-yarn-error.log
+.vscode
+*.log
+node_modules
+coverage

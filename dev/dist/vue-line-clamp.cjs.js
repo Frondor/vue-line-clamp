@@ -44,13 +44,13 @@ const VueLineClamp = {
       { importCss: false, textOverflow: "ellipsis" },
       options
     );
-    const styles =
+    const css =
       "display:block;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;text-overflow:" +
       options.textOverflow;
 
     if (options.importCss) {
       const stylesheets = window.document.styleSheets,
-        rule = `.vue-line-clamp{${styles}}`;
+        rule = `.vue-line-clamp{${css}}`;
       if (stylesheets && stylesheets[0] && stylesheets.insertRule) {
         stylesheets.insertRule(rule);
       } else {
@@ -70,7 +70,7 @@ const VueLineClamp = {
       currentValue: 0,
       bind(el) {
         if (!options.importCss) {
-          el.style.cssText += styles;
+          el.style.cssText += css;
         } else {
           el.classList.add("vue-line-clamp");
         }

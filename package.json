@@ -1,44 +1,25 @@
 {
   "name": "vue-line-clamp",
-  "version": "1.2.4",
+  "version": "1.3.0",
   "description": "A simple, fast and lightweight directive for truncating multi line texts using \"cross-browser\" CSS strategies.",
-  "main": "dist/vue-line-clamp.cjs.js",
-  "module": "dist/vue-line-clamp.esm.js",
-  "browser": "dist/vue-line-clamp.umd.js",
-  "scripts": {
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "test": "jest",
-    "pretest": "npm run build",
-    "serve": "npm run build && cp dist/. dev/dist -r && node node_modules/watch-http-server/bin/http-server ./dev -a localhost -o",
-    "prepublishOnly": "npm run build"
-  },
-  "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-plugin-external-helpers": "^6.22.0",
-    "babel-preset-env": "^1.7.0",
-    "jest": "^22.1.4",
-    "rollup": "^0.50.0",
-    "rollup-plugin-babel": "^3.0.3",
-    "rollup-plugin-commonjs": "^8.2.6",
-    "rollup-plugin-node-resolve": "^3.0.0",
-    "watch-http-server": "^0.7.6"
-  },
-  "peerDependencies": {
-    "vue": "^2.*"
-  },
+  "main": "dist/vue-line-clamp.js",
+  "browser": "dist/vue-line-clamp.js",
   "files": [
     "dist"
   ],
-  "keywords": [
-    "vue",
-    "ellipsis",
-    "line-clamp",
-    "text-truncate",
-    "truncate",
-    "multiline"
-  ],
-  "author": "Frondor",
+  "scripts": {
+    "dev": "webpack --config build/webpack.dev.js",
+    "build": "webpack --config build/webpack.prod.js",
+    "start": "webpack-dev-server --config build/webpack.dev.js --hot --open",
+    "test": "jest",
+    "coverage": "npm run test -- --coverage",
+    "prepublishOnly": "npm run build",
+    "upgrade-all": "npx npm-check-updates -u && npm i"
+  },
+  "author": {
+    "name": "Federico Vázquez (Frondor)",
+    "url": "https://frondor.github.io"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -47,5 +28,34 @@
   "bugs": {
     "url": "https://github.com/Frondor/vue-line-clamp/issues"
   },
-  "homepage": "https://github.com/Frondor/vue-line-clamp#readme"
+  "homepage": "https://github.com/Frondor/vue-line-clamp#readme",
+  "sideEffects": false,
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.4",
+    "clean-webpack-plugin": "^1.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "jest": "^23.6.0",
+    "webpack": "^4.27.1",
+    "webpack-cli": "^3.1.2",
+    "webpack-dev-server": "^3.1.9",
+    "webpack-merge": "^4.1.5"
+  },
+  "peerDependencies": {
+    "vue": "^2.*"
+  },
+  "engines": {
+    "node": ">= 8"
+  },
+  "keywords": [
+    "vue",
+    "ellipsis",
+    "line-clamp",
+    "text-truncate",
+    "truncate",
+    "multiline"
+  ]
 }

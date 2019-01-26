@@ -43,11 +43,11 @@ var truncateText = function truncateText(el, bindings, useFallbackFunc) {
 var VueLineClamp = {
   install: function install(Vue, options) {
     options = Object.assign({ importCss: false, textOverflow: "ellipsis" }, options);
-    var styles = "display:block;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;text-overflow:" + options.textOverflow;
+    var css = "display:block;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;text-overflow:" + options.textOverflow;
 
     if (options.importCss) {
       var stylesheets = window.document.styleSheets,
-          rule = ".vue-line-clamp{" + styles + "}";
+          rule = ".vue-line-clamp{" + css + "}";
       if (stylesheets && stylesheets[0] && stylesheets.insertRule) {
         stylesheets.insertRule(rule);
       } else {
@@ -64,7 +64,7 @@ var VueLineClamp = {
       currentValue: 0,
       bind: function bind(el) {
         if (!options.importCss) {
-          el.style.cssText += styles;
+          el.style.cssText += css;
         } else {
           el.classList.add("vue-line-clamp");
         }
