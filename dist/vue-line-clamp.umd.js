@@ -43,7 +43,8 @@ var truncateText = function truncateText(el, bindings, useFallbackFunc) {
 var VueLineClamp = {
   install: function install(Vue, options) {
     options = Object.assign({ importCss: false, textOverflow: "ellipsis" }, options);
-    var styles = "display:block;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;text-overflow:" + options.textOverflow;
+
+    var styles = "\n      display: block;\n      display: -webkit-box;\n      -webkit-box-orient: vertical;\n      overflow: hidden;\n      word-break: break-word;\n      text-overflow: " + options.textOverflow + ";\n    ";
 
     if (options.importCss) {
       var stylesheets = window.document.styleSheets,
