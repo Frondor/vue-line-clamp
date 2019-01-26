@@ -1,6 +1,6 @@
 {
   "name": "vue-line-clamp",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "A simple, fast and lightweight directive for truncating multi line texts using \"cross-browser\" CSS strategies.",
   "main": "dist/vue-line-clamp.js",
   "browser": "dist/vue-line-clamp.js",

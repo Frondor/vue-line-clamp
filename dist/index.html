@@ -1,48 +1,55 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <!-- THIS FILE IS USED FOR DEVELOPMENT -->
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>
-    Development Workspace
-  </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
-  <!-- Javascript bundle gets inyected right here -->
-<script type="text/javascript" src="vue-line-clamp.js"></script></head>
-<body>
-  <div id="app">
-    <label for="range">Number of lines:  {{ lines }} </label> <br>
-    <input type="range" v-model="lines" min="0" max="5" id="range">
+  <head>
+    <!-- THIS FILE IS USED FOR DEVELOPMENT -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Development Workspace</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <!-- Javascript bundle gets inyected right here -->
+  <script type="text/javascript" src="vue-line-clamp.js"></script></head>
+  <body>
+    <div id="app">
+      <label for="range">Number of lines: {{ lines }} </label> <br />
+      <input type="range" v-model="lines" min="0" max="5" id="range" />
 
-    <p v-line-clamp:26="lines" style="width: 200px">
-      Truncate my lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore, neque minima libero voluptatibus voluptate enim earum qui tempora sed sequi fugiat aut commodi laboriosam iste cupiditate quo veritatis quam obcaecati.
-    </p>
+      <p v-line-clamp:26="lines" style="width: 200px">
+        Truncate my lorem ipsum dolor, sit amet consectetur adipisicing elit.
+        Dolore, neque minima libero voluptatibus voluptate enim earum qui
+        tempora sed sequi fugiat aut commodi laboriosam iste cupiditate quo
+        veritatis quam obcaecati.
+      </p>
 
-    <p v-line-clamp:26="1" style="width: 200px">
-      Truncate my lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore, neque minima libero voluptatibus voluptate enim earum qui tempora sed sequi fugiat aut commodi laboriosam iste cupiditate quo veritatis quam obcaecati.
-    </p>
+      <p v-line-clamp:26="1" style="width: 200px">
+        Truncate my lorem ipsum dolor, sit amet consectetur adipisicing elit.
+        Dolore, neque minima libero voluptatibus voluptate enim earum qui
+        tempora sed sequi fugiat aut commodi laboriosam iste cupiditate quo
+        veritatis quam obcaecati.
+      </p>
 
-    <p v-line-clamp:26="lines" style="width: 200px">
-      Truncate my lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore, neque minima libero voluptatibus voluptate enim earum qui tempora sed sequi fugiat aut commodi laboriosam iste cupiditate quo veritatis quam obcaecati.
-    </p>
+      <p v-line-clamp:26="lines" style="width: 200px">
+        Truncate my lorem ipsum dolor, sit amet consectetur adipisicing elit.
+        Dolore, neque minima libero voluptatibus voluptate enim earum qui
+        tempora sed sequi fugiat aut commodi laboriosam iste cupiditate quo
+        veritatis quam obcaecati.
+      </p>
 
-    <p v-line-clamp:26="lines" style="width: 200px">
-      aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    </p>
-  </div>
-  <script>
-    Vue.use(VueLineClamp, {
-      importCss: false
-    });
+      <p v-line-clamp:26="lines" style="width: 200px">
+        aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+      </p>
+    </div>
+    <script>
+      Vue.use(window['vue-line-clamp'], {
+        importCss: false,
+      });
 
-    new Vue({
-      el: '#app',
-      data: {
-        lines: 2
-      }
-    });
-  </script>
-</body>
+      new Vue({
+        el: '#app',
+        data: {
+          lines: 2,
+        },
+      });
+    </script>
+  </body>
 </html>
