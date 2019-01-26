@@ -48,7 +48,7 @@ const VueLineClamp = {
       display: -webkit-box;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      word-break: break-word;
+      word-break: break-all;
       text-overflow: ${options.textOverflow};
     `;
 
