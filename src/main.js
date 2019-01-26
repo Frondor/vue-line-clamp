@@ -42,15 +42,9 @@ const VueLineClamp = {
       { importCss: false, textOverflow: "ellipsis" },
       options
     );
-
-    const styles = `
-      display: block;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      word-break: break-word;
-      text-overflow: ${options.textOverflow};
-    `;
+    const styles =
+      "display:block;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;text-overflow:" +
+      options.textOverflow;
 
     if (options.importCss) {
       const stylesheets = window.document.styleSheets,
