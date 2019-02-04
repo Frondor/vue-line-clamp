@@ -34,9 +34,10 @@ In some upcoming version it may be able to detect this value automatically.
 
 | property  | type  | default  | description |
 | --- | --- | --- | --- |
-| importCss  | Boolean | false  | Set to `true` in order to import styles into `<head>` automatically, element.style is used by default
+| importCss  | Boolean | `false`  | Set to `true` in order to import styles into `<head>` automatically, element.style is used by default
 | textOverflow  | String | `ellipsis`  | Set the value for [`text-overflow`](https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow) property in modern browsers
-| fallbackFunc  | Function | defaultFallbackFunc  | Provide your own default method to handle the truncation strategy on unsupported browsers. Accepts all directive params: `element (Node)`, `bindings (Object)`, `lines (Number)`
+| wordBreak  | Boolean | `true`  | Break words by using [`word-break`](https://developer.mozilla.org/en-US/docs/Web/CSS/word-break) property.
+| fallbackFunc  | Function | `defaultFallbackFunc`  | Provide your own default method to handle the truncation strategy on unsupported browsers. Accepts all directive params: `element (Node)`, `bindings (Object)`, `lines (Number)`
 
 
 ### Caveats
