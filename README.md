@@ -36,7 +36,7 @@ In some upcoming version it may be able to detect this value automatically.
 | --- | --- | --- | --- |
 | importCss  | Boolean | false  | Set to `true` in order to import styles into `<head>` automatically, element.style is used by default
 | textOverflow  | String | `ellipsis`  | Set the value for [`text-overflow`](https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow) property in modern browsers
-| wordBreak | String | `break-all` | set the value for [`word-break`](https://developer.mozilla.org/en-US/docs/Web/CSS/word-break)
+| wordBreak | String | `break-word` | Set the value for [`word-break`](https://developer.mozilla.org/en-US/docs/Web/CSS/word-break)
 | fallbackFunc  | Function | defaultFallbackFunc  | Provide your own default method to handle the truncation strategy on unsupported browsers. Accepts all directive params: `element (Node)`, `bindings (Object)`, `lines (Number)`
 
 
