@@ -35,7 +35,7 @@ const truncateText = function(el, bindings) {
 const VueLineClamp = {
   install(Vue, options) {
     options = Object.assign(
-      { importCss: false, textOverflow: 'ellipsis', wordBreak: 'break-all' },
+      { importCss: false, textOverflow: 'ellipsis', wordBreak: 'break-word' },
       options
     );
 
