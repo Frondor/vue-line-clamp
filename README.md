@@ -47,7 +47,7 @@ In some upcoming version it may be able to detect this value automatically.
 
 ### Changelog
 
-**1.2.5** - Implemented `wordBreak` option, refactored how the backup function is called
+**v1.6.0** - Implemented `wordBreak` option, refactored how the backup function is called
 
 **v1.2.4** - Implemented `textOverflow` option.
 
