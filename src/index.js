@@ -1,6 +1,7 @@
 const currentValueProp = 'vLineClampValue';
 
-function defaultFallbackFunc(el, bindings, lines) {
+function defaultFallbackFunc(el, bindings) {
+  let lines = parseInt(bindings.value);
   if (lines) {
     let lineHeight = parseInt(bindings.arg);
     if (isNaN(lineHeight)) {
@@ -20,26 +21,21 @@ function defaultFallbackFunc(el, bindings, lines) {
   }
 }
 
-const truncateText = function(el, bindings, useFallbackFunc) {
+const truncateText = function(el, bindings) {
   let lines = parseInt(bindings.value);
   if (isNaN(lines)) {
     console.error('Parameter for vue-line-clamp must be a number');
     return;
   } else if (lines !== el[currentValueProp]) {
     el[currentValueProp] = lines;
-
-    if (useFallbackFunc) {
-      useFallbackFunc(el, bindings, lines);
-    } else {
-      el.style.webkitLineClamp = lines ? lines : '';
-    }
+    el.style.webkitLineClamp = lines ? lines : '';
   }
 };
 
 const VueLineClamp = {
   install(Vue, options) {
     options = Object.assign(
-      { importCss: false, textOverflow: 'ellipsis' },
+      { importCss: false, textOverflow: 'ellipsis', wordBreak: 'break-word' },
       options
     );
 
@@ -48,7 +44,7 @@ const VueLineClamp = {
       display: -webkit-box;
       -webkit-box-orient: vertical;
       overflow: hidden;
-      word-break: break-all;
+      word-break: ${options.wordBreak};
       text-overflow: ${options.textOverflow};
     `;
 
@@ -65,9 +61,9 @@ const VueLineClamp = {
       }
     }
 
-    const useFallbackFunc =
+    const clampFunction =
       'webkitLineClamp' in document.body.style
-        ? undefined
+        ? truncateText
         : options.fallbackFunc || defaultFallbackFunc;
 
     Vue.directive('line-clamp', {
@@ -79,10 +75,10 @@ const VueLineClamp = {
           el.classList.add('vue-line-clamp');
         }
       },
-      inserted: (el, bindings) => truncateText(el, bindings, useFallbackFunc),
-      updated: (el, bindings) => truncateText(el, bindings, useFallbackFunc),
+      inserted: (el, bindings) => clampFunction(el, bindings),
+      updated: (el, bindings) => clampFunction(el, bindings),
       componentUpdated: (el, bindings) =>
-        truncateText(el, bindings, useFallbackFunc),
+        clampFunction(el, bindings),
     });
   },
 };

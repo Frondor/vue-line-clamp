@@ -36,6 +36,7 @@ In some upcoming version it may be able to detect this value automatically.
 | --- | --- | --- | --- |
 | importCss  | Boolean | false  | Set to `true` in order to import styles into `<head>` automatically, element.style is used by default
 | textOverflow  | String | `ellipsis`  | Set the value for [`text-overflow`](https://developer.mozilla.org/en-US/docs/Web/CSS/text-overflow) property in modern browsers
+| wordBreak | String | `break-word` | Set the value for [`word-break`](https://developer.mozilla.org/en-US/docs/Web/CSS/word-break)
 | fallbackFunc  | Function | defaultFallbackFunc  | Provide your own default method to handle the truncation strategy on unsupported browsers. Accepts all directive params: `element (Node)`, `bindings (Object)`, `lines (Number)`
 
 
@@ -45,6 +46,8 @@ In some upcoming version it may be able to detect this value automatically.
 2. The fallback method for older browsers won't show up the ellipsis (`...`) since we can't control the part of the text node that may get "clamped".
 
 ### Changelog
+
+**v1.6.0** - Implemented `wordBreak` option, refactored how the backup function is called
 
 **v1.2.4** - Implemented `textOverflow` option.
 
