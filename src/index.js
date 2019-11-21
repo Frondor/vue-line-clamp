@@ -39,17 +39,19 @@ const truncateText = function(el, bindings, useFallbackFunc) {
 const VueLineClamp = {
   install(Vue, options) {
     options = Object.assign(
-      { importCss: false, textOverflow: 'ellipsis' },
+      { importCss: false, textOverflow: 'ellipsis', cssImportant: false },
       options
     );
-
+    
+    const important = options.cssImportant ? '!important' : '';
+    
     const styles = `
-      display: block;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      word-break: break-all;
-      text-overflow: ${options.textOverflow};
+      display: block ${important};
+      display: -webkit-box ${important};
+      -webkit-box-orient: vertical ${important};
+      overflow: hidden ${important};
+      word-break: break-all ${important};
+      text-overflow: ${options.textOverflow} ${important};
     `;
 
     if (options.importCss) {
