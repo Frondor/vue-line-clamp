@@ -54,10 +54,10 @@ if (pkg.browser) {
       ".js",
       ".node.js"
     );
-    targets.push(NodeConfig);
+    targets.unshift(NodeConfig);
   }
 } else {
-  targets.push(NodeConfig);
+  targets.unshift(NodeConfig);
 }
 
 module.exports = targets;
