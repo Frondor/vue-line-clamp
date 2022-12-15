@@ -37,7 +37,7 @@ const truncateText = function(el, bindings, useFallbackFunc) {
 };
 
 const VueLineClamp = {
-  install(Vue, options) {
+  install(app, options) {
     options = Object.assign(
       { importCss: false, textOverflow: 'ellipsis' },
       options
@@ -70,16 +70,16 @@ const VueLineClamp = {
         ? undefined
         : options.fallbackFunc || defaultFallbackFunc;
 
-    Vue.directive('line-clamp', {
+    app.directive('line-clamp', {
       currentValue: 0,
-      bind(el) {
+      beforeMount(el) {
         if (!options.importCss) {
           el.style.cssText += styles;
         } else {
           el.classList.add('vue-line-clamp');
         }
       },
-      inserted: (el, bindings) => truncateText(el, bindings, useFallbackFunc),
+      mounted: (el, bindings) => truncateText(el, bindings, useFallbackFunc),
       updated: (el, bindings) => truncateText(el, bindings, useFallbackFunc),
       componentUpdated: (el, bindings) =>
         truncateText(el, bindings, useFallbackFunc),

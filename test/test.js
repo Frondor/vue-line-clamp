@@ -1,13 +1,11 @@
-const Vue = require('vue/dist/vue');
+const { createApp } = require('vue');
 const VueLineClamp = require('..');
+console.log(VueLineClamp);
 
-Vue.use(VueLineClamp, {
-  importCss: true
-});
-
-
-const vm = new Vue({
-  data: { lines: 2 },
+const app = createApp({
+  data: function() {
+    return { lines: 2 };
+  },
   template: `
     <div>
       <span v-line-clamp="lines">
@@ -17,17 +15,30 @@ const vm = new Vue({
         Architecto, maiores?
       </span>
     </div>
-  `
-}).$mount()
+  `,
+  mounted() {
+    runTests()
+  },
+});
 
-const elem = vm.$el.querySelector('span')
+app.use(VueLineClamp, {
+  importCss: true
+});
 
-test('CSS class is applied', () => {
-  expect(elem.classList.contains('vue-line-clamp'))
-    .toBe(true)
-})
+const el = document.createElement("div");
+el.setAttribute("id","app");
+document.body.appendChild(el);
+app.mount('#app')
 
-test('CSS styles are imported in the DOM', () => {
-  expect(document.head.querySelector('#vue-line-clamp'))
-    .toBeTruthy()
-})
+function runTests() {
+  test('CSS class is applied', () => {
+    const elem = document.body.querySelector('span')
+    expect(elem.classList.contains('vue-line-clamp'))
+      .toBe(true)
+  })
+
+  test('CSS styles are imported in the DOM', () => {
+    expect(document.head.querySelector('#vue-line-clamp'))
+      .toBeTruthy()
+  })
+}
