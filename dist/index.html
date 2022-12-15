@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Development Workspace</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <!-- Javascript bundle gets inyected right here -->
   <script type="text/javascript" src="vue-line-clamp.js"></script></head>
   <body>
@@ -40,16 +40,15 @@
       </p>
     </div>
     <script>
-      Vue.use(window['vue-line-clamp'], {
-        importCss: false,
-      });
-
-      new Vue({
-        el: '#app',
-        data: {
-          lines: 2,
+      var app = Vue.createApp({
+        data: function () {
+          return { lines: 2 };
         },
       });
+      app.use(window['vue-line-clamp'], {
+        importCss: false,
+      });
+      app.mount('#app');
     </script>
   </body>
 </html>
